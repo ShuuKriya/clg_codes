@@ -1,0 +1,59 @@
+#include <stdio.h>
+int main(){
+    //inputs
+    int n;
+    scanf("%d",&n);
+    int a[n];
+    for(int i=0;i<n;i++){
+        scanf("%d",&a[i]);
+    }
+
+    //check is all are 0s
+    int allZero = 1;
+    for (int i = 0; i < n; i++) {
+        if (a[i] != 0) {
+            allZero = 0;
+            break;
+        }
+    }
+    if (allZero) {
+        printf("%d\n", n);
+        return 0;
+    }
+    //array b to store no of consecutive 0s
+    int cnt=0;
+    int b[n];
+    int j=0;
+
+
+    for(int i=0;i<n;i++){
+        if(a[i]==0){
+            cnt++;
+        }
+        else{
+            b[j]=cnt;
+            j++;
+            cnt=0;
+        }
+
+    }
+    b[j]=cnt;
+    
+    //for the wrap case
+    if(a[n-1]==0){
+        b[j]=b[j]+b[0];
+
+    }
+
+    //max of b
+    int max=b[0];
+    for(int i=0;i<j+1;i++){
+        if(max<b[i]){
+            max=b[i];
+        }
+    }
+
+    printf("%d\n",max);
+   
+    return 0;
+}
