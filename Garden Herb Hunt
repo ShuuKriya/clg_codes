@@ -1,0 +1,43 @@
+#include <stdio.h>
+//function to find the max no of herbs which can be collected 
+int fm(int a[],int s,int e){
+    int prev=0,curr=0;
+    for(int i=s;i<=e;i++){
+        int temp=curr;
+        if(curr<a[i]+prev){
+            curr=a[i]+prev;
+        }
+        prev =temp;
+    }
+    return curr;
+}
+
+int main(){
+    int n;
+    scanf("%d",&n);
+    int a[n];
+    for(int i=0;i<n;i++){
+        scanf("%d",&a[i]);
+    }
+
+    /*
+    here we need to consider 2 cases since its a circular arrangement:
+
+    case 1:
+    first we consider the case excluding the last garden
+    since we are including first garden and they are adjacent
+    since its a circular arrangement
+
+    case 2:
+    then we take the second the garden at first and include the last garden which we skipped
+    */
+
+    int m1=fm(a,0,n-2);
+    int m2=fm(a,1,n-1);
+
+    printf("%d",m1>m2?m1:m2);
+
+
+    return 0;
+
+}
