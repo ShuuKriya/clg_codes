@@ -20,6 +20,12 @@ int main(){
         scanf("%d",&a[i]);
     }
 
+    // Edge cases
+    if (n == 1) {
+        printf("%d", a[0]);
+        return 0;
+    }
+
     /*
     here we need to consider 2 cases since its a circular arrangement:
 
